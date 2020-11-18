@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+
+import sys, os
+
+ARG = sys.argv[1] if len(sys.argv) > 1 else '-h'
+
+# https://stackoverflow.com/questions/4842424/list-of-ansi-color-escape-sequences
+class bcolors:
+    HEADER = '\033[95m'
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+def usage():
+	
+	print(f"""
+Usage: tmux-cheat [option]
+
+Mandatory arguments:
+
+	{bcolors.GREEN}--help -h{bcolors.ENDC}	--> prints usage of tmux-cheat
+	{bcolors.GREEN}--version -v{bcolors.ENDC}	--> prints version of tmux-cheat 
+
+Report bugs and contributions at: https://github.com/aaron-imbrock/tmux-cheat
+		""")
+
+invoke = {
+	'-h': usage(),
+}
+
+def main(arg):
+	invoke[arg]
+
+if __name__ == "__main__":
+	main(ARG)
+
